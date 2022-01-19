@@ -1,2 +1,2 @@
-# Tarot-projekt-protokoly
-Program, który losuje wybraną ilość kart, i tworzy wróżbę na ich podstawie
+# Horoskop-projekt-protokoly
+Program, który generuje wróżbę na dany dzień oraz bardziej wsypecjalizowane wróżby dla zalogowanych użytkowników 
