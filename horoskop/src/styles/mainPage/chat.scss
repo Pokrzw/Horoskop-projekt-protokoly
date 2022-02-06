@@ -1,0 +1,26 @@
+.Chat{
+    background-color: #0E0E24;
+    margin: 0;
+    min-height: 40vh;
+    height: fit-content;
+    overflow: hidden;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    img{
+        max-height: 58px;
+        max-width: 58px;
+        border-radius: 50%;
+        border: 5px solid #DCA355;  
+    }
+    h1{
+        padding: 10px;
+        margin: 0;
+        color: #DCA355;
+        align-self: flex-start;
+    }
+    .actualChatContainer{
+        margin: 0;
+    }
+}

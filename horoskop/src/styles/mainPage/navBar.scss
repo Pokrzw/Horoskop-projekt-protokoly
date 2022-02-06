@@ -1,0 +1,69 @@
+body{
+    margin: 0;
+    height: 100vh;
+    @import url('https://fonts.googleapis.com/css2?family=Vollkorn&display=swap');
+    font-family: 'Vollkorn', serif;
+
+    .NavBar{
+        position: sticky;
+        top:0;
+        z-index: 1;
+        left: 0;
+        background-color: #0E0E24;
+        color: #DCA355;
+        display: flex;
+        align-items: center; 
+        justify-content: space-between;
+
+        .Logo{
+            padding-left: 10px;
+        }
+        img{
+            max-height: 58px;
+            max-width: 58px;
+            border-radius: 50%;
+            border: 5px solid #DCA355;  
+        }
+
+        input{
+            font-family: 'Vollkorn', serif;
+            font-size: 15px;
+            padding: 5px;
+            border-radius: 7px;
+            border: none;
+        }
+
+        button{
+            background-color: #DCA355;
+            border: none;
+            font-family: 'Vollkorn', serif;
+            color: white;
+            border-radius: 5px;
+            padding-top:5px;
+            margin-left: 3px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .UserMiniProfile{
+            display: flex;
+            align-items: center;
+            .ProfilePic{
+                margin-right: 6px;
+            }
+
+            .MiniProfileText{
+                display: flex;
+                flex-direction: column;
+                padding-right: 10px;
+                p{
+                    font-weight: 700;
+                    font-size: 20px;
+                    margin: 0px;
+                    padding-bottom: 3px;
+                }
+            }
+        }
+    }
+    
+
+}

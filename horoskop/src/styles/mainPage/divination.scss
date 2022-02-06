@@ -1,0 +1,31 @@
+.Divination{
+    background: #0f0c29;  /* fallback for old browsers */
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    img{
+        max-height: 250px;
+        max-width: 250px;
+        padding-bottom: 30px;   
+        filter: brightness(0) invert(1);
+    }
+    .divinationText{
+        color: white;
+        p:first-child{
+            color: #DCA355;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+        p:nth-child(2){
+            font-size: 35px;
+            font-weight: 700;
+            margin: 0;
+        }
+        p:nth-child(3){
+            margin: 0;
+            max-width: 500px;
+        }
+    }
+
+}
