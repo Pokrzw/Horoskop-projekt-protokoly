@@ -1,0 +1,21 @@
+.iconOptions {
+  display: flex;
+  flex-direction: column;
+  button {
+    color: white;
+    background-color: #0e0e24;
+    font-family: "Vollkorn", serif;
+    font-size: 25px;
+    border-radius: 10px;
+    border: none;
+    padding: 15px;
+    margin: 10px;
+    outline: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #03030f;
+      color: rgb(202, 202, 202);
+    }
+  }
+}

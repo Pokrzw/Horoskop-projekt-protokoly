@@ -1,0 +1,14 @@
+.EditIcons {
+  height: 70vh;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  .buttons {
+    align-self: center;
+  }
+  .ikony {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}

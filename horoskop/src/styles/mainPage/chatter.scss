@@ -1,0 +1,28 @@
+.Chatter {
+  display: flex;
+  align-items: flex-start;
+  .usersProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 3px;
+    img {
+      max-height: 40px;
+      max-width: 40px;
+      border-radius: 50%;
+      border: 4px solid #dca355;
+    }
+    p {
+      margin-top: 0px;
+    }
+  }
+  .chatPopUp {
+    color: black;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    min-width: fit-content;
+    max-width: 400px;
+    overflow-wrap: break-word;
+  }
+}

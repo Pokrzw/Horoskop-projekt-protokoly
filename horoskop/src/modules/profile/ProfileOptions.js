@@ -1,11 +1,16 @@
+import "../../styles/profile/profileOptions.scss";
+import { useNavigate, Link } from "react-router-dom";
+
 const ProfileOptions = () => {
-    return ( 
-        <div className="ProfileOptions">
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-        </div>
-     );
-}
- 
+  return (
+    <div className="ProfileOptions">
+      <button>Specjalna przepowiednia</button>
+      <Link to="/profile/:id/edit_icons">
+        <button>Wybierz/Edytuj zestawy ikon</button>
+      </Link>
+      <button>Dodaj zestaw ikon</button>
+    </div>
+  );
+};
+
 export default ProfileOptions;

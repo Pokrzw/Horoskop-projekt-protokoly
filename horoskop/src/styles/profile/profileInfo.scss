@@ -1,0 +1,64 @@
+body {
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  margin: 0;
+}
+.ProfileInfo {
+  margin-top: 50px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .ProfileBasic {
+    p {
+      font-size: 45px;
+      margin: 0px;
+      margin-top: 20px;
+    }
+    color: white;
+    border-radius: 20px;
+    background-color: #0e0e24;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 450px;
+    img {
+      max-height: 90px;
+      max-width: 90px;
+      border-radius: 50%;
+      border: 9px solid #dca355;
+      margin-bottom: 5px;
+    }
+    button {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-weight: 600;
+      font-style: italic;
+      font-size: 20px;
+      background-color: #0e0e2400;
+      color: rgb(77, 77, 77);
+      font-family: "Vollkorn", serif;
+
+      &:hover {
+        color: rgb(161, 161, 161);
+      }
+    }
+
+    .ZnakInfo {
+      display: flex;
+      padding: 20px;
+      align-items: center;
+      p {
+        margin: 0;
+        font-size: 25px;
+      }
+      img {
+        max-height: 60px;
+        max-width: 60px;
+        border-radius: 50%;
+        border: none;
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.IconSetComponent {
+  background-color: #0e0e24c7;
+  display: flex;
+  padding: 25px;
+  border-radius: 15px;
+  align-items: center;
+  img {
+    filter: brightness(0) invert(1);
+    max-width: 150px;
+    max-height: 150px;
+  }
+  .container {
+    display: flex;
+    margin-right: 25px;
+    .text {
+      .title {
+        font-size: 25px;
+      }
+      .descr {
+        font-style: italic;
+        max-width: 350px;
+      }
+    }
+  }
+  .options {
+    button {
+      background-color: #dca355;
+      border: none;
+      font-family: "Vollkorn", serif;
+      color: white;
+      border-radius: 5px;
+      padding-top: 5px;
+      margin-left: 3px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-right: 15px;
+    }
+  }
+}
