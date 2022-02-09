@@ -20,7 +20,11 @@ const ProfileInfo = () => {
           />
         </div>
       </div>
-
+      <form>
+        <input></input>
+        <button>Zmień nazwe</button>
+      </form>
+      <button>Usuń profil</button>
       <ProfileOptions />
     </div>
   );

@@ -47,5 +47,6 @@ const accountSchema = new Schema(
   },
   { collection: "accounts" }
 );
+accountSchema.index({login: "text"})
 
 module.exports = model("Account", accountSchema);

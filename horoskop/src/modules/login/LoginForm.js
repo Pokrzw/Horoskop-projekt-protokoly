@@ -11,7 +11,7 @@ const LoginForm = ({ register, setUser }) => {
   const initialValues = {
     login: "",
     haslo: "",
-    znak: "",
+    znak: "Wodnik",
   };
 
   const handleSubmit = (values, actions) => {
@@ -23,7 +23,8 @@ const LoginForm = ({ register, setUser }) => {
           .then((res) => {
             navigate("/login");
             actions.setSubmitting(false);
-          });
+        })
+        .catch(err => {});
       } else {
         await axios
           .post("http://localhost:5000/accounts/login", {
@@ -37,7 +38,8 @@ const LoginForm = ({ register, setUser }) => {
               .get(`http://localhost:5000/accounts/${res.data.user_id}`)
               .then((result) => {
                 setUser(result.data);
-              });
+            })
+            .catch(err => {});
             navigate("/");
           });
       }

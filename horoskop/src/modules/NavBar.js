@@ -5,9 +5,12 @@ import { useNavigate, Link } from "react-router-dom";
 import LoggedIn from "../modules/navBarComponents/LoggedIn";
 import LoggedOut from "../modules/navBarComponents/LoggedOut";
 import Cookies from "js-cookie";
+import axios from 'axios';
 
 const NavBar = ({ profil, setUser }) => {
   const navigate = useNavigate();
+  
+  
 
   return (
     <div className="NavBar">
@@ -17,7 +20,9 @@ const NavBar = ({ profil, setUser }) => {
         </div>
       </Link>
       <div className="SearchBar">
-        <input type="text" placeholder="Znajdź użytkownika" />
+        <form onSubmit={e => {e.preventDefault(); navigate(`/profile/search/${e.target.firstChild.value}`)}}>
+          <input type="text" placeholder="Znajdź użytkownika" />
+        </form>
       </div>
       {Cookies.get("sessionID") ? (
         <LoggedIn profil={profil} setUser={setUser} />

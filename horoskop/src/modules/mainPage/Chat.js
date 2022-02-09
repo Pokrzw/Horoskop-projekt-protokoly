@@ -11,7 +11,7 @@ const Chat = ({ profil }) => {
   const sendMessage = (mqttClient) => {
     const textarea = document.getElementById("chatTextarea");
     if (mqttClient) {
-      mqttClient.publish("chat", `${Cookies.get("user-id")}/${textarea.value}`);
+      mqttClient.publish("chat", `${Cookies.get("user-id") ? Cookies.get("user-id") : "anon"}/${textarea.value}`);
       textarea.value = "";
     } else {
       console.log("Brak MQTT");

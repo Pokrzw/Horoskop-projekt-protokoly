@@ -6,6 +6,7 @@ const Chatter = ({ message }) => {
   const [chatter, setChatter] = useState({});
   useEffect(() => {
     (async () => {
+      if(message[0] !== "anon")
       await axios
         .get(`http://localhost:5000/accounts/${message[0]}`)
         .then((res) => {
@@ -18,10 +19,10 @@ const Chatter = ({ message }) => {
     <div className="Chatter">
       <div className="usersProfile">
         <img
-          src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"
+          src={chatter.zdjecieProfilowe ? chatter.zdjecieProfilowe : "https://solisradius.pl/wp-content/uploads/2021/04/person-icon.png"}
           alt="profilePic"
         />
-        <p>{chatter.login}</p>
+        <p>{chatter.login || "Anon"}</p>
       </div>
       <div className="chatPopUp">{message[1]}</div>
     </div>

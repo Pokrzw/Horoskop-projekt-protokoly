@@ -11,10 +11,19 @@ router.get("/", async (req, res) => {
   return res.send(allAccounts);
 });
 
+router.get("/search", async (req, res) => {
+  const { pattern } = req.query
+  const result = await Account.find({login: { $regex: pattern, $options: "i"}});
+  res.send(result);
+});
+
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const allAccounts = await Account.find({ _id: id });
+  if(id){
+    const allAccounts = await Account.find({ _id: id });
   return res.send(allAccounts[0]);
+  } else res.sendStatus(400);
+  return
 });
 
 router.post("/register", async (req, res) => {

@@ -7,6 +7,7 @@ import NavBar from "./modules/NavBar";
 import LoginForm from "./modules/login/LoginForm";
 import axios from "axios";
 import Cookies from "js-cookie";
+import ProfileList from './modules/profile/ProfileList';
 
 function App() {
   const [user, setUser] = useState({});
@@ -18,7 +19,8 @@ function App() {
           .then((res) => {
             console.log(res.data);
             setUser(res.data);
-          });
+          })
+          .catch(err => {});
       } else {
         setUser({});
       }
@@ -37,6 +39,7 @@ function App() {
           path="/login"
           element={<LoginForm register={false} setUser={setUser} />}
         />
+        <Route path="/profile/search/:pattern" element={<ProfileList />}/>
       </Routes>
     </div>
   );
