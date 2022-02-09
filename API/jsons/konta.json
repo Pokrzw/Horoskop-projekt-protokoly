@@ -1,0 +1,21 @@
+ [
+        {
+            "login": "Anon",
+            "haslo":"pwd",
+            "zdjecieProfilowe":"https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg",
+            "znak":"Panna"
+        },
+        {
+            "login": "user123",
+            "haslo":"pwd",
+            "zdjecieProfilowe":"https://static.vecteezy.com/packs/media/components/global/search-explore-nav/img/vectors/term-bg-1-666de2d941529c25aa511dc18d727160.jpg",
+            "znak":"Strzelec"
+        },
+        {
+            "login": "uzytkownik_939",
+            "haslo":"pwd",
+            "zdjecieProfilowe":"https://thumbs.dreamstime.com/b/d-image-abstract-tunnel-diagonal-black-white-stripes-optical-illusion-168695979.jpg",
+            "znak":"Wodnik"
+        }
+]
+    

@@ -12,9 +12,12 @@
   min-height: 50vh;
   img {
     max-height: 250px;
+    min-height: 100px;
     max-width: 250px;
-    padding-bottom: 30px;
+    padding-right: 30px;
     filter: brightness(0) invert(1);
+  }
+  svg {
   }
   .divinationText {
     color: white;

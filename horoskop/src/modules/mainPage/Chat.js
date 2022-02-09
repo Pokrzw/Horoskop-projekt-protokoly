@@ -1,16 +1,17 @@
 import Chatter from "./Chatter";
 import "../../styles/mainPage/chat.scss";
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import mqtt from "mqtt";
 
-const Chat = () => {
+const Chat = ({ profil }) => {
   const [mqttClient, setMqttClient] = useState(null);
   const [messages, setMessages] = useState([]);
 
   const sendMessage = (mqttClient) => {
     const textarea = document.getElementById("chatTextarea");
     if (mqttClient) {
-      mqttClient.publish("chat", textarea.value);
+      mqttClient.publish("chat", `${Cookies.get("user-id")}/${textarea.value}`);
       textarea.value = "";
     } else {
       console.log("Brak MQTT");
@@ -42,10 +43,14 @@ const Chat = () => {
         <div className="textContainer">
           <div className="profileData">
             <img
-              src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"
+              src={
+                profil.zdjecieProfilowe
+                  ? profil.zdjecieProfilowe
+                  : "https://solisradius.pl/wp-content/uploads/2021/04/person-icon.png"
+              }
               alt="profilePic"
             />
-            <p>Anon</p>
+            <p>{profil.login ? profil.login : "Anon"}</p>
           </div>
           <textarea
             name="comment"
@@ -66,7 +71,7 @@ const Chat = () => {
       <div className="actualChatContainer">
         {messages.length !== 0 &&
           messages.map((message) => {
-            return <Chatter message={message[0]} />;
+            return <Chatter message={message} />;
           })}
       </div>
     </div>

@@ -1,40 +1,29 @@
 import "../styles/mainPage/navBar.scss";
+import "../modules/navBarComponents/LoggedIn";
+import "../modules/navBarComponents/LoggedOut";
 import { useNavigate, Link } from "react-router-dom";
+import LoggedIn from "../modules/navBarComponents/LoggedIn";
+import LoggedOut from "../modules/navBarComponents/LoggedOut";
+import Cookies from "js-cookie";
 
-const NavBar = () => {
+const NavBar = ({ profil, setUser }) => {
   const navigate = useNavigate();
 
   return (
     <div className="NavBar">
       <Link to="/">
         <div className="Logo">
-          <h1>Mock Logo</h1>
+          <h1>Zodiakara.net</h1>
         </div>
       </Link>
       <div className="SearchBar">
         <input type="text" placeholder="Znajdź użytkownika" />
       </div>
-      <div className="UserMiniProfile">
-        <div className="ProfilePic">
-          <img
-            src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"
-            alt=""
-          />
-        </div>
-        <div className="MiniProfileText">
-          <p>Witaj, Anon</p>
-          <div className="buttons">
-            <button
-              onClick={() => {
-                navigate(`/profile/1`);
-              }}
-            >
-              Profil
-            </button>
-            <button>Wyloguj</button>
-          </div>
-        </div>
-      </div>
+      {Cookies.get("sessionID") ? (
+        <LoggedIn profil={profil} setUser={setUser} />
+      ) : (
+        <LoggedOut />
+      )}
     </div>
   );
 };
