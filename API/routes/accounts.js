@@ -17,15 +17,6 @@ router.get("/search", async (req, res) => {
   res.send(result);
 });
 
-router.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  if(id){
-    const allAccounts = await Account.find({ _id: id });
-  return res.send(allAccounts[0]);
-  } else res.sendStatus(400);
-  return
-});
-
 router.post("/register", async (req, res) => {
   const { login, haslo, znak } = req.body;
   let hash = undefined;
@@ -63,6 +54,15 @@ router.post("/login", async (req, res) => {
     res.status(400).send("Wrong password");
   }
   return;
+});
+
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  if(id && id.length !== 0){
+    const allAccounts = await Account.find({ _id: id });
+  return res.send(allAccounts[0]);
+  } else res.sendStatus(400);
+  return
 });
 
 router.delete("/:id", async (req, res) => {

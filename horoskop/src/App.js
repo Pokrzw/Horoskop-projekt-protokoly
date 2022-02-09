@@ -1,5 +1,5 @@
 import MainPage from "./modules/MainPage";
-import Profile from "./modules/Profile";
+import Profile from "./modules/profile/Profile";
 import EditIcons from "./modules/EditIcons";
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
@@ -17,7 +17,6 @@ function App() {
         await axios
           .get(`http://localhost:5000/accounts/${Cookies.get("user-id")}`)
           .then((res) => {
-            console.log(res.data);
             setUser(res.data);
           })
           .catch(err => {});
@@ -32,14 +31,18 @@ function App() {
       <NavBar profil={user} setUser={setUser} />
       <Routes>
         <Route path="/" element={<MainPage profil={user} />} />
-        <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/profile/:id/edit_icons" element={<EditIcons />} />
-        <Route path="/register" element={<LoginForm register={true} />} />
+        <Route path="profile">
+          <Route path=":id" element={<Profile profil={user}/>} />
+          <Route path=":id/edit_icons" element={<EditIcons />} />
+          <Route path="search/" element={<ProfileList />}/>
+          <Route path="search/:pattern" element={<ProfileList />}/>
+        </Route>
+        <Route path="register" element={<LoginForm register={true} />} />
         <Route
-          path="/login"
+          path="login"
           element={<LoginForm register={false} setUser={setUser} />}
         />
-        <Route path="/profile/search/:pattern" element={<ProfileList />}/>
+        
       </Routes>
     </div>
   );

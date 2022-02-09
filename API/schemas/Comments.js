@@ -5,7 +5,12 @@ const commentSchema = new Schema(
   {
     author: {
       type: String,
+      default : "Anon",
       references: "Account",
+    },
+    author_name: {
+      type: String,
+      default : "Anon"
     },
     content: {
       type: String,

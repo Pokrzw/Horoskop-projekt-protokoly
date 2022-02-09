@@ -3,6 +3,7 @@ import "../../styles/mainPage/chat.scss";
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import mqtt from "mqtt";
+import axios from 'axios';
 
 const Chat = ({ profil }) => {
   const [mqttClient, setMqttClient] = useState(null);
@@ -10,16 +11,21 @@ const Chat = ({ profil }) => {
 
   const sendMessage = (mqttClient) => {
     const textarea = document.getElementById("chatTextarea");
+    const userId = Cookies.get("user-id")
     if (mqttClient) {
-      mqttClient.publish("chat", `${Cookies.get("user-id") ? Cookies.get("user-id") : "anon"}/${textarea.value}`);
+      axios.post(`http://localhost:5000/chat/${userId ? userId : "anon"}`, {content: textarea.value});
+      mqttClient.publish("chat", `${userId ? userId : "anon"}/${textarea.value}`);
       textarea.value = "";
     } else {
       console.log("Brak MQTT");
     }
   };
 
-  useEffect(() => {
-    setMqttClient(mqtt.connect("ws://127.0.0.1:8082/mqtt"));
+  useEffect(() => {(async () => {
+      const client = mqtt.connect("ws://127.0.0.1:8082/mqtt");
+      client.on("connect", () => {setMqttClient(client);})
+      await axios.get("http://localhost:5000/chat").then(res => {setMessages(res.data.map(message => {return [message.author, message.content]}))})
+    })()
   }, []);
 
   useEffect(() => {
@@ -29,7 +35,6 @@ const Chat = ({ profil }) => {
         if (t === "chat") {
           const message = m.toString().split("/");
           setMessages([...messages, message]);
-          console.log(message);
         }
       });
     }

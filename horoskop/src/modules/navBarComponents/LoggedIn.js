@@ -25,7 +25,7 @@ const LoggedIn = ({ profil, setUser }) => {
           <div className="buttons">
             <button
               onClick={() => {
-                navigate(`/profile/1`);
+                navigate(`profile/${Cookies.get("user-id")}`);
               }}
             >
               Profil
