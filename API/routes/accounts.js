@@ -12,8 +12,10 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/search", async (req, res) => {
-  const { pattern } = req.query
-  const result = await Account.find({login: { $regex: pattern, $options: "i"}});
+  const { pattern } = req.query;
+  const result = await Account.find({
+    login: { $regex: pattern, $options: "i" },
+  });
   res.send(result);
 });
 
@@ -58,11 +60,11 @@ router.post("/login", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
-  if(id && id.length !== 0){
+  if (id && id.length !== 0) {
     const allAccounts = await Account.find({ _id: id });
-  return res.send(allAccounts[0]);
+    return res.send(allAccounts[0]);
   } else res.sendStatus(400);
-  return
+  return;
 });
 
 router.delete("/:id", async (req, res) => {
@@ -71,7 +73,12 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-  const account = await Account.findByIdAndUpdate(req.params.id);
+  const id = req.params.id;
+  const account = await Account.findByIdAndUpdate(id, {
+    login: req.body.login,
+  }).then((x) => {
+    console.log(x);
+  });
   return res.send(account);
 });
 

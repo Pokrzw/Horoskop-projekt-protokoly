@@ -6,8 +6,13 @@ const IconOptions = () => {
 
   return (
     <div className="iconOptions">
-      <button onClick={() => {navigate("/icons/add")}}>Dodaj</button>
-      <button>Usuń</button>
+      <button
+        onClick={() => {
+          navigate("/icons/add");
+        }}
+      >
+        Dodaj
+      </button>
     </div>
   );
 };

@@ -46,7 +46,7 @@ const iconSetSchema = new Schema(
         message: (props) => `${props.value} is not a valid image file`,
       },
     },
-    Bliżnięta: {
+    Bliźnięta: {
       type: String,
       required: true,
       validate: {
