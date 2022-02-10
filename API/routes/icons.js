@@ -4,7 +4,7 @@ const router = express.Router();
 const Icons = require("../schemas/IconSet");
 
 router.get("/", async (req, res) => {
-  const allIcons = await Icons.find().then((result) => {
+  await Icons.find().then((result) => {
     res.send({
       all: result,
     });

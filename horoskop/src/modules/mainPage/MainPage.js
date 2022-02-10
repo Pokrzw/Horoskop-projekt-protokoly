@@ -1,9 +1,7 @@
-import Chat from "./mainPage/Chat";
-import Divination from "./mainPage/Divination";
-import NavBar from "./NavBar";
+import Chat from "./Chat";
+import Divination from "./Divination";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 
 const MainPage = ({ profil }) => {
   const [dailyZodiac, setDailyZodiac] = useState([]);

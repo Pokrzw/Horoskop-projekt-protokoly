@@ -13,7 +13,7 @@ const Chatter = ({ message }) => {
           setChatter(res.data);
         });
     })();
-  }, []);
+  }, [message]);
 
   return (
     <div className="Chatter">

@@ -8,7 +8,15 @@ function ProfileComments({id, profil}) {
 
     useEffect(() => {(async () => {
         await axios.get(`http://localhost:5000/comments/${id}`).then(res => {setComments(res.data.comments);})
-    })()}, []);
+    })()}, [id]);
+
+    const handleDelete = async (commentId) => {
+        await axios.delete(`http://localhost:5000/comments/${commentId}`, {author: id})
+    }
+
+    const handleEdit = async ({commentId, content}) => {
+        await axios.patch(`http://localhost:5000/comments/${commentId}`, {content})
+    }
 
     const handleSubmit = (values, actions) => {
         (async (values, actions) => {
@@ -46,8 +54,16 @@ function ProfileComments({id, profil}) {
                     <div>{comment.author_name}-{comment.content}
                     {comment.author === Cookies.get("user-id") && 
                     <div>
-                        <button>Edytuj</button>
-                        <button>Usuń</button>
+                        <Formik
+                        initialValues={{content: "", commentId: comment._id}}
+                        onSubmit={handleEdit}
+                        >
+                            <Form>
+                                <Field name="content" component="textarea"/>
+                                <button type="submit">Edytuj</button>
+                            </Form>
+                        </Formik>
+                        <button onClick={() => handleDelete(comment._id)}>Usuń</button>
                     </div>}
                     </div>
                 )

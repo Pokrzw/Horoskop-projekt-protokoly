@@ -44,6 +44,10 @@ const accountSchema = new Schema(
         default: [],
       },
     ],
+    admin: {
+      type: Boolean,
+      default: false
+    }
   },
   { collection: "accounts" }
 );

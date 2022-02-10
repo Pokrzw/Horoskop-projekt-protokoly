@@ -5,7 +5,6 @@ import { useNavigate, Link } from "react-router-dom";
 import LoggedIn from "../modules/navBarComponents/LoggedIn";
 import LoggedOut from "../modules/navBarComponents/LoggedOut";
 import Cookies from "js-cookie";
-import axios from 'axios';
 
 const NavBar = ({ profil, setUser }) => {
   const navigate = useNavigate();

@@ -1,23 +1,20 @@
 import "../../styles/editIcons/iconSetComponent.scss";
 
-const IconSetComponent = () => {
+const IconSetComponent = ({icon}) => {
   return (
     <div className="IconSetComponent">
       <div className="container">
         <img
-          src="https://image.flaticon.com/icons/png/512/47/47038.png"
+          src={icon.Panna}
           alt="Panna"
         />
         <div className="text">
-          <div className="title">Zestaw podstawowy</div>
-          <div className="descr">
-            Podstawowy zestaw ikon dostępny dla każdego.
-          </div>
+          <div className="title">{icon.nazwa}</div>
         </div>
       </div>
       <div className="options">
         <button>Wybierz</button>
-        <input type="checkbox" />
+        {icon.nazwa !== "Zestaw Podstawowy" && <input type="checkbox" /> && <button>Edytuj</button>}
       </div>
     </div>
   );

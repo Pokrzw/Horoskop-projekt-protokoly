@@ -1,5 +1,4 @@
 import ProfileInfo from "./ProfileInfo";
-import NavBar from "../NavBar";
 import ProfileComments from './ProfileComments';
 import { useParams } from 'react-router-dom';
 

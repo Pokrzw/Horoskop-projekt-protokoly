@@ -75,8 +75,8 @@ const Chat = ({ profil }) => {
       </div>
       <div className="actualChatContainer">
         {messages.length !== 0 &&
-          messages.map((message) => {
-            return <Chatter message={message} />;
+          messages.map((message, index) => {
+            return <Chatter key={index} message={message} />;
           })}
       </div>
     </div>
