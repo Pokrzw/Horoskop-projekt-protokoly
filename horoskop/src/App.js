@@ -9,6 +9,11 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import ProfileList from "./modules/profile/ProfileList";
 import IconAdd from "./modules/editIcons/IconAdd";
+import IconEdit from "./modules/editIcons/IconEdit";
+import CustomDivination from "./modules/editIcons/divinations/CustomDivination";
+import EditDivinations from "./modules/editIcons/divinations/EditDivinations";
+import AddDivination from "./modules/editIcons/divinations/AddDivination";
+import AddChanges from "./modules/editIcons/divinations/AddChanges";
 
 function App() {
   const [user, setUser] = useState({});
@@ -32,6 +37,23 @@ function App() {
       <NavBar profil={user} setUser={setUser} />
       <Routes>
         <Route path="/" element={<MainPage profil={user} />} />
+        <Route
+          path="/profile/:id/customDivination"
+          element={<CustomDivination profil={user} setUser={setUser} />}
+        />
+        <Route
+          path="/profile/:id/edit_divinations/add_values"
+          element={<AddChanges profil={user} setUser={setUser} />}
+        />
+        <Route
+          path="/profile/:id/edit_divinations"
+          element={<EditDivinations profil={user} setUser={setUser} />}
+        />
+        <Route
+          path="/profile/:id/edit_divinations/add_divination"
+          element={<AddDivination profil={user} setUser={setUser} />}
+        />
+
         <Route path="profile">
           <Route
             path=":id"
@@ -42,6 +64,7 @@ function App() {
           <Route path="search/:pattern" element={<ProfileList />} />
         </Route>
         <Route path="/icons/add" element={<IconAdd />} />
+        <Route path="/icons/edit/:id" element={<IconEdit />} />
         <Route path="register" element={<LoginForm register={true} />} />
         <Route
           path="login"

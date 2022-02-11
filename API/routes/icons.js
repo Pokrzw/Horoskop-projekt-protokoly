@@ -12,6 +12,15 @@ router.get("/", async (req, res) => {
   return;
 });
 
+router.get("/:id", async (req, res) => {
+  await Icons.findById(req.params.id).then((result) => {
+    res.send({
+      all: result,
+    });
+  });
+  return;
+});
+
 router.post("/", async (req, res) => {
   const {
     nazwa,
@@ -53,6 +62,11 @@ router.post("/", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   const zestaw = await Icons.findByIdAndDelete(req.params.id);
+  return res.send(zestaw);
+});
+
+router.put("/:id", async (req, res) => {
+  const zestaw = await Icons.findByIdAndEdit(req.params.id, req.body);
   return res.send(zestaw);
 });
 module.exports = router;

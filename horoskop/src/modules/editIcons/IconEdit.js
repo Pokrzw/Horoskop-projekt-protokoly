@@ -1,29 +1,25 @@
 import { Formik, Form, Field } from "formik";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { useParams } from "react-router";
+import { useState, useEffect } from "react";
 
-function IconAdd() {
+function IconEdit() {
+  const { id } = useParams();
   const navigate = useNavigate();
+  const [initalVals, setInitalVals] = useState({});
+  useEffect(() => {
+    axios.get(`http://localhost:5000/icons/${id}`).then((data) => {
+      setInitalVals(data.data.all);
+    });
+  }, []);
   return (
     <div>
       <Formik
-        initialValues={{
-          nazwa: "",
-          Wodnik: "",
-          Ryby: "",
-          Baran: "",
-          Byk: "",
-          Bliźnięta: "",
-          Rak: "",
-          Lew: "",
-          Panna: "",
-          Waga: "",
-          Skorpion: "",
-          Koziorożec: "",
-          Strzelec: "",
-        }}
+        enableReinitialize
+        initialValues={initalVals}
         onSubmit={async (values) => {
-          axios.post(`http://localhost:5000/icons`, values).then(() => {
+          axios.put(`http://localhost:5000/icons`, values).then(() => {
             navigate("/");
           });
         }}
@@ -55,11 +51,11 @@ function IconAdd() {
           <Field name="Koziorożec" type="text"></Field>
           <label>Strzelec</label>
           <Field name="Strzelec" type="text"></Field>
-          <button type="submit">Dodaj nowy zestaw</button>
+          <button type="submit">Edytuj zestaw</button>
         </Form>
       </Formik>
     </div>
   );
 }
 
-export default IconAdd;
+export default IconEdit;
