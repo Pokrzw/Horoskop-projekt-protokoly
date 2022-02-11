@@ -7,24 +7,60 @@ router.put("/put/:znak/:kategoria/:text", async (req, res) => {
   const { kategoria, text, znak } = req.params;
   const { update } = req.body;
 
+  // if (kategoria === "zdrowie") {
+  //   await Divinity.updateOne(
+  //     { nazwa: znak, "kategoria.zdrowie": text },
+  //     { $set: { "kategoria.$": update } }
+  //   ).then(() => {
+  //     return res.sendStatus(200);
+  //   });
+  // }
+  // if (kategoria === "kariera") {
+  //   await Divinity.updateOne(
+  //     { nazwa: znak, "kategoria.kariera": text },
+  //     { $set: { "kategoria.$": update } }
+  //   ).then(() => {
+  //     return res.sendStatus(200);
+  //   });
+  // }
+  // if (kategoria === "relacje") {
+  //   await Divinity.updateOne(
+  //     { nazwa: znak, "kategoria.relacje": text },
+  //     { $set: { "kategoria.$": update } }
+  //   ).then(() => {
+  //     return res.sendStatus(200);
+  //   });
+  // }
+  // if (kategoria === "dzienny") {
+  //   await Divinity.updateOne(
+  //     { nazwa: znak, "kategoria.dzienny": text },
+  //     { $set: { "kategoria.dzienny.lll": [update] } }
+  //   ).then(() => {
+  //     return res.sendStatus(200);
+  //   });
+  // }
+
   const toChange = {};
   toChange[`kategoria.${kategoria}`] = text;
-
+  console.log(1, toChange);
   await Divinity.findOneAndUpdate({ nazwa: znak }, { $pull: toChange })
-    .then(async () => {
+    .then(async (result) => {
+      console.log(2, result);
       toChange[`kategoria.${kategoria}`] = update;
-      await Divinity.findByIdAndUpdate({ nazwa: znak }, { $push: toChange })
-        .then(() => {
+      console.log(3, toChange);
+      await Divinity.findByIdAndUpdate(result._id, { $push: toChange })
+        .then((result2) => {
+          console.log(4, result2);
           res.sendStatus(200);
         })
         .catch((err) => {
+          console.log(4, err);
           res.status(400).send(err);
         });
     })
     .catch((err) => {
       res.status(400).send(err);
     });
-  return;
 });
 //random divinity daily
 
@@ -75,7 +111,6 @@ router.delete("/delete/:znak/:kategoria/:text/", async (req, res) => {
 
 router.get("/:kategoria/:znak", async (req, res) => {
   const { kategoria, znak } = req.params;
-  console.log(req.params);
   const allDivinitiesForZnak = await Divinity.findOne({ nazwa: znak }).then(
     (result) => {
       const wrozba = result.kategoria[kategoria];

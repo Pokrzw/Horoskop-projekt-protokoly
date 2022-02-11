@@ -17,6 +17,7 @@ import AddChanges from "./modules/editIcons/divinations/AddChanges";
 
 function App() {
   const [user, setUser] = useState({});
+  const [divinityTextToChange, setDivinityTextToChange] = useState("");
   useEffect(() => {
     (async () => {
       if (Cookies.get("user-id")) {
@@ -43,15 +44,26 @@ function App() {
         />
         <Route
           path="/profile/:id/edit_divinations/add_values"
-          element={<AddChanges profil={user} setUser={setUser} />}
+          element={
+            <AddChanges
+              profil={user}
+              setDivinityTextToChange={setDivinityTextToChange}
+              divinityTextToChange={divinityTextToChange}
+            />
+          }
         />
         <Route
           path="/profile/:id/edit_divinations"
-          element={<EditDivinations profil={user} setUser={setUser} />}
+          element={
+            <EditDivinations
+              profil={user}
+              setDivinityTextToChange={setDivinityTextToChange}
+            />
+          }
         />
         <Route
           path="/profile/:id/edit_divinations/add_divination"
-          element={<AddDivination profil={user} setUser={setUser} />}
+          element={<AddDivination profil={user} />}
         />
 
         <Route path="profile">

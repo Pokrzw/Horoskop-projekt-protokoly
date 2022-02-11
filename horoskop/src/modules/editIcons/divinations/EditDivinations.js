@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
+import "../../../styles/customDivinations/divinationsMain.scss";
 
-const EditDivinations = ({ profil }) => {
+const EditDivinations = ({ setDivinityTextToChange, profil }) => {
   const navigate = useNavigate();
 
   const [dzienny, setDzienny] = useState([]);
@@ -60,12 +61,12 @@ const EditDivinations = ({ profil }) => {
       </Link>
 
       <div className="categories">
-        <div className="dzienny">
+        <div className="segment dzienny">
           <h3>Dzienny:</h3>
           {dzienny.map((x) => {
             return (
               <div className="wrozba">
-                <div className="element">{x.substring(0, 200)}...</div>
+                <div className="element">{x.substring(0, 50)}...</div>
                 <button
                   onClick={async () => {
                     axios
@@ -79,9 +80,16 @@ const EditDivinations = ({ profil }) => {
                 >
                   Usuń
                 </button>
-                <Link to="/profile/:id/edit_divinations/add_values">
-                  <button>Edytuj</button>
-                </Link>
+                {/* <Link to="/profile/:id/edit_divinations/add_values"> */}
+                <button
+                  onClick={() => {
+                    setDivinityTextToChange(x);
+                    navigate("/profile/:id/edit_divinations/add_values");
+                  }}
+                >
+                  Edytuj
+                </button>
+                {/* </Link> */}
               </div>
             );
           })}
@@ -90,8 +98,8 @@ const EditDivinations = ({ profil }) => {
           <h3>Kariera</h3>
           {kariera.map((x) => {
             return (
-              <div className="wrozba">
-                <div className="element">{x.substring(0, 200)}...</div>
+              <div className="segment wrozba">
+                <div className="element">{x.substring(0, 50)}...</div>
                 <button
                   onClick={async () => {
                     axios
@@ -110,12 +118,12 @@ const EditDivinations = ({ profil }) => {
             );
           })}
         </div>
-        <div className="zdrowie">
+        <div className="segment zdrowie">
           <h3>Zdrowie:</h3>
           {zdrowie.map((x) => {
             return (
               <div className="wrozba">
-                <div className="element">{x.substring(0, 200)}...</div>
+                <div className="element">{x.substring(0, 50)}...</div>
                 <button
                   onClick={async () => {
                     axios
@@ -134,12 +142,12 @@ const EditDivinations = ({ profil }) => {
             );
           })}
         </div>
-        <div className="relacje">
+        <div className="segment relacje">
           <h3>Relacje</h3>
           {relacje.map((x) => {
             return (
               <div className="wrozba">
-                <div className="element">{x.substring(0, 200)}...</div>
+                <div className="element">{x.substring(0, 50)}...</div>
                 <button
                   onClick={async () => {
                     axios

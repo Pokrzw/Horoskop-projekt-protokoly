@@ -12,7 +12,7 @@ const LoggedIn = ({ profil, setUser }) => {
           <img
             src={
               profil.zdjecieProfilowe
-                ? "https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"
+                ? profil.zdjecieProfilowe
                 : "https://solisradius.pl/wp-content/uploads/2021/04/person-icon.png"
             }
             alt="ss"

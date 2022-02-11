@@ -37,58 +37,60 @@ const ProfileInfo = ({ profil, setUser }) => {
           src={
             profil.zdjecieProfilowe
               ? profil.zdjecieProfilowe
-              : "https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"
+              : "https://solisradius.pl/wp-content/uploads/2021/04/person-icon.png"
           }
           alt="profilePic"
         />
-        <button>Edytuj Profilowe</button>
+        {Cookies.get("user-id") === profil._id && (
+          <Formik
+            initialValues={{
+              zdjecieProfilowe: profil.zdjecieProfilowe,
+            }}
+            onSubmit={async (values) => {
+              axios
+                .put(`http://localhost:5000/accounts/${profil._id}`, values)
+                .then((x) => {
+                  profil.zdjecieProfilowe = values.zdjecieProfilowe;
+                });
+            }}
+          >
+            <Form className="form1">
+              <Field name="zdjecieProfilowe" type="text"></Field>
+              <button type="submit">Edytuj Profilowe</button>
+            </Form>
+          </Formik>
+        )}
         <div className="ZnakInfo">
           <p>Znak:</p>
           <img
-            src={
-              profil.znak
-                ? znaki[profil.znak]
-                : "https://image.flaticon.com/icons/png/512/47/47038.png"
-            }
-            alt={profil.znak ? znaki[profil.znak] : "Panna"}
+            src={profil.znak ? znaki[profil.znak] : ""}
+            alt={profil.znak ? znaki[profil.znak] : ""}
           />
         </div>
       </div>
-      <Formik
-        initialValues={{
-          login: "",
-        }}
-        onSubmit={async (values) => {
-          axios
-            .put(`http://localhost:5000/accounts/${profil._id}`, values)
-            .then((x) => {
-              profil.login = values.login;
-            });
-        }}
-      >
-        <Form>
-          <Field name="login" type="text"></Field>
-          <button type="submit">Zmień nazwe</button>
-        </Form>
-      </Formik>
 
-      <button
-        onClick={() => {
-          axios
-            .delete(`http://localhost:5000/accounts/${profil._id}`)
-            .then((x) => {
-              const cookies = Cookies.get();
-              for (const cookie of Object.keys(cookies)) {
-                Cookies.set(cookie, "", { expires: 0 });
-              }
-              navigate("/login");
-              setUser({});
-            });
-        }}
-      >
-        Usuń profil
-      </button>
-      <ProfileOptions />
+      {Cookies.get("user-id") === profil._id && (
+        <div className="deleteButton">
+          <button
+            onClick={() => {
+              axios
+                .delete(`http://localhost:5000/accounts/${profil._id}`)
+                .then((x) => {
+                  const cookies = Cookies.get();
+                  for (const cookie of Object.keys(cookies)) {
+                    Cookies.set(cookie, "", { expires: 0 });
+                  }
+                  navigate("/login");
+                  setUser({});
+                });
+            }}
+          >
+            Usuń profil
+          </button>
+        </div>
+      )}
+
+      {Cookies.get("user-id") === profil._id && <ProfileOptions />}
     </div>
   );
 };

@@ -75,7 +75,7 @@ router.delete("/:id", async (req, res) => {
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
   const account = await Account.findByIdAndUpdate(id, {
-    login: req.body.login,
+    zdjecieProfilowe: req.body.zdjecieProfilowe,
   }).then((x) => {
     console.log(x);
   });

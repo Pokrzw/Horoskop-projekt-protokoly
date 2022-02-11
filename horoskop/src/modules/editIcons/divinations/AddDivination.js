@@ -1,6 +1,7 @@
 import { Formik, Form, Field } from "formik";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import "../../../styles/loginForm/loginform.scss";
 
 const AddDivination = ({ profil }) => {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ const AddDivination = ({ profil }) => {
       <div>
         <Formik
           initialValues={{
-            kategoria: "",
+            kategoria: "dzienny",
             tekst: "",
           }}
           onSubmit={async (values) => {
@@ -24,14 +25,18 @@ const AddDivination = ({ profil }) => {
           }}
         >
           <Form>
-            <Field name="kategoria" as="select">
+            <Field className="dropdown" name="kategoria" as="select">
               <option value="dzienny">dzienny</option>
               <option value="kariera">kariera</option>
               <option value="relacje">relacje</option>
               <option value="zdrowie">zdrowie</option>
             </Field>
 
-            <Field name="tekst" component="textarea"></Field>
+            <Field
+              className="textArea"
+              name="tekst"
+              component="textarea"
+            ></Field>
             <button type="submit">Dodaj wróżbę</button>
           </Form>
         </Formik>

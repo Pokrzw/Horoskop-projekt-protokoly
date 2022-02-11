@@ -1,0 +1,58 @@
+.EditDivinations {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  button {
+    background-color: #dca355;
+    border: none;
+    font-family: "Vollkorn", serif;
+    color: white;
+    border-radius: 5px;
+    padding-top: 5px;
+    margin-left: 3px;
+    font-style: normal;
+    font-size: 25px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-weight: 500;
+
+    &:hover {
+      color: white;
+      background-color: #a57533;
+    }
+  }
+  .segment {
+    margin: 10px;
+  }
+  .wrozba {
+    background-color: #0e0e24;
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 200px;
+    margin: 10px;
+  }
+  .categories {
+    display: flex;
+    justify-content: space-between;
+    button {
+      background-color: #dca355;
+      border: none;
+      font-family: "Vollkorn", serif;
+      color: white;
+      border-radius: 5px;
+      padding-top: 5px;
+      margin-left: 3px;
+      font-style: normal;
+      font-size: 15px;
+      margin: 10px;
+      cursor: pointer;
+      font-weight: 500;
+
+      &:hover {
+        color: white;
+        background-color: #a57533;
+      }
+    }
+  }
+}
